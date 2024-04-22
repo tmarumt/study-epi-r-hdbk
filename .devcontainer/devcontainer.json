@@ -1,0 +1,241 @@
+{
+  "name": "${localWorkspaceFolderBasename}",
+  "dockerComposeFile": "compose.yaml",
+  "service": "rstudio",
+  "workspaceFolder": "/home/rstudio/${localWorkspaceFolderBasename}",
+  "forwardPorts": [8080, 8787],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "REditorSupport.r",
+        "rdebugger.r-debugger",
+        "ms-python.python",
+        "julialang.language-julia",
+        "quarto.quarto",
+        "james-yu.latex-workshop",
+        "editorconfig.editorconfig"
+      ],
+      "settings": {
+        "r.rpath.linux": "/usr/local/bin/R",
+        "r.rterm.linux": "/usr/local/bin/radian",
+        "r.plot.useHttpgd": true,
+        "r.bracketedPaste": true,
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "tinytex::xelatex",
+            "tools": [
+              "tinytex::xelatex"
+            ]
+          },
+          {
+            "name": "tinytex::xelatex -> bibtex -> tinytex::xelatex * 2",
+            "tools": [
+              "tinytex::xelatex",
+              "bibtex",
+              "tinytex::xelatex",
+              "tinytex::xelatex"
+            ]
+          },
+          {
+            "name": "latexmk",
+            "tools": [
+              "latexmk"
+            ]
+          },
+          {
+            "name": "latexmk (latexmkrc)",
+            "tools": [
+              "latexmk_rconly"
+            ]
+          },
+          {
+            "name": "latexmk (lualatex)",
+            "tools": [
+              "lualatexmk"
+            ]
+          },
+          {
+            "name": "latexmk (xelatex)",
+            "tools": [
+              "xelatexmk"
+            ]
+          },
+          {
+            "name": "pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+              "pdflatex",
+              "bibtex",
+              "pdflatex",
+              "pdflatex"
+            ]
+          },
+          {
+            "name": "Compile Rnw files",
+            "tools": [
+              "rnw2tex",
+              "latexmk"
+            ]
+          },
+          {
+            "name": "Compile Jnw files",
+            "tools": [
+              "jnw2tex",
+              "latexmk"
+            ]
+          },
+          {
+            "name": "Compile Pnw files",
+            "tools": [
+              "pnw2tex",
+              "latexmk"
+            ]
+          },
+          {
+            "name": "tectonic",
+            "tools": [
+              "tectonic"
+            ]
+          }
+        ],
+        "latex-workshop.latex.tools": [
+          {
+            "name": "tinytex::xelatex",
+            "command": "Rscript",
+            "args": [
+              "--no-init-file",
+              "-e",
+              "tinytex::xelatex(commandArgs(trailingOnly = TRUE)[1], clean = FALSE, engine_args = \"-synctex=1\")",
+              "%DOC_EXT%"
+            ]
+          },
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-pdf",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "lualatexmk",
+            "command": "latexmk",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-lualatex",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "xelatexmk",
+            "command": "latexmk",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-xelatex",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "latexmk_rconly",
+            "command": "latexmk",
+            "args": [
+              "%DOC%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "%DOC%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+              "%DOCFILE%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "rnw2tex",
+            "command": "Rscript",
+            "args": [
+              "-e",
+              "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
+            ],
+            "env": {}
+          },
+          {
+            "name": "jnw2tex",
+            "command": "julia",
+            "args": [
+              "-e",
+              "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
+            ],
+            "env": {}
+          },
+          {
+            "name": "jnw2texminted",
+            "command": "julia",
+            "args": [
+              "-e",
+              "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
+            ],
+            "env": {}
+          },
+          {
+            "name": "pnw2tex",
+            "command": "pweave",
+            "args": [
+              "-f",
+              "tex",
+              "%DOC_EXT%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "pnw2texminted",
+            "command": "pweave",
+            "args": [
+              "-f",
+              "texminted",
+              "%DOC_EXT%"
+            ],
+            "env": {}
+          },
+          {
+            "name": "tectonic",
+            "command": "tectonic",
+            "args": [
+              "--synctex",
+              "--keep-logs",
+              "%DOC%.tex"
+            ],
+            "env": {}
+          }
+        ]
+      }
+    }
+  },
+  "initializeCommand": "/bin/bash .devcontainer/initialize.sh; if [ ! -s .devcontainer/.env ]; then echo LOCAL_WORKSPACE_FOLDER_BASENAME=${localWorkspaceFolderBasename} > .devcontainer/.env; fi",
+  "postCreateCommand": "/bin/bash .devcontainer/postcreate.sh",
+  "remoteUser": "rstudio"
+}

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Install R packages
+if [ -s renv.lock ]; then
+  Rscript -e 'renv::restore()'
+fi
+
+# Install Python packages
+if [ -s requirements.txt ]; then
+  python3 -m pip install --user -r requirements.txt
+fi
+
+# Install Julia packages
+if [ -s Project.toml ]; then
+  julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
+fi
+
+# Download data from the remote storage
+if [ -d .dvc ]; then
+  dvc pull
+fi
