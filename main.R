@@ -1,2 +1,11 @@
 library(here)
 library(rio)
+library(janitor)
+library(lubridate)
+library(matchmaker)
+library(epikit)
+library(tidyverse)
+library(skimr)
+
+linelist_raw <- import(here("data/linelist_raw.xlsx"))
+skim(linelist_raw)

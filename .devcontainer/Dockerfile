@@ -26,3 +26,9 @@ RUN mkdir -p .cache/R/renv .cache/pip .julia .local/bin && \
 USER root
 
 RUN python3 -m pip install --no-cache-dir dvc-gdrive
+
+RUN apt-get update && apt-get install -y \
+    libudunits2-dev \
+    libproj-dev \
+    libgdal-dev \
+    && rm -rf /var/lib/apt/lists/*
