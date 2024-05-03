@@ -34,7 +34,8 @@
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-60.2",
-      "Source": "unknown",
+      "Source": "Repository",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "grDevices",
