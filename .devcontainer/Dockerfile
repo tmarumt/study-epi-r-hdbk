@@ -20,7 +20,7 @@ RUN python3 -m pip install --no-cache-dir \
 USER rstudio
 WORKDIR /home/rstudio
 
-RUN mkdir -p .cache/R/renv .cache/pip .julia .local/bin && \
+RUN mkdir -p .cache/R/renv .cache/pip .julia .local/bin .cache/pydrive2fs && \
     Rscript -e 'tinytex::install_tinytex()'
 
 USER root
