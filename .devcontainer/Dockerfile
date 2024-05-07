@@ -10,7 +10,8 @@ RUN /rocker_scripts/install_julia.sh
 RUN install2.r --error --skipinstalled -n -1 \
     renv \
     languageserver \
-    httpgd
+    httpgd \
+    && rm -rf /tmp/downloaded_packages
 RUN installGithub.r ManuelHentschel/vscDebugger
 
 RUN python3 -m pip install --no-cache-dir \
