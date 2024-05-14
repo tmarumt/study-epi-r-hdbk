@@ -8,11 +8,13 @@ RUN /rocker_scripts/install_python.sh
 RUN /rocker_scripts/install_julia.sh
 
 RUN install2.r --error --skipinstalled -n -1 \
+    --repos https://manuelhentschel.r-universe.dev --repos getOption \
     renv \
     languageserver \
     httpgd \
-    && rm -rf /tmp/downloaded_packages
-RUN installGithub.r ManuelHentschel/vscDebugger
+    vscDebugger \
+    && rm -rf /tmp/downloaded_packages \
+    && strip /usr/local/lib/R/site-library/*/libs/*.so
 
 RUN python3 -m pip install --no-cache-dir \
     radian \
