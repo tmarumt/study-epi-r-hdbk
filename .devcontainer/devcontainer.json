@@ -22,6 +22,21 @@
         "r.bracketedPaste": true,
         "latex-workshop.latex.recipes": [
           {
+            "name": "tinytex::lualatex",
+            "tools": [
+              "tinytex::lualatex"
+            ]
+          },
+          {
+            "name": "tinytex::lualatex -> bibtex -> tinytex::lualatex * 2",
+            "tools": [
+              "tinytex::lualatex",
+              "bibtex",
+              "tinytex::lualatex",
+              "tinytex::lualatex"
+            ]
+          },
+          {
             "name": "tinytex::xelatex",
             "tools": [
               "tinytex::xelatex"
@@ -98,6 +113,16 @@
           }
         ],
         "latex-workshop.latex.tools": [
+          {
+            "name": "tinytex::lualatex",
+            "command": "Rscript",
+            "args": [
+              "--no-init-file",
+              "-e",
+              "tinytex::lualatex(commandArgs(trailingOnly = TRUE)[1], clean = FALSE, engine_args = \"-synctex=1\")",
+              "%DOC_EXT%"
+            ]
+          },
           {
             "name": "tinytex::xelatex",
             "command": "Rscript",

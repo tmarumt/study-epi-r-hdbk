@@ -2,10 +2,16 @@ FROM rocker/tidyverse
 
 RUN apt-get update && apt-get install -y \
     openssh-client \
-    gnupg
+    gnupg \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN /rocker_scripts/install_python.sh
-RUN /rocker_scripts/install_julia.sh
+USER rstudio
+WORKDIR /home/rstudio
+
+RUN mkdir -p .cache/R/renv .cache/pip .julia .local/bin .cache/pydrive2fs && \
+    Rscript -e 'tinytex::install_tinytex()'
+
+USER root
 
 RUN install2.r --error --skipinstalled -n -1 \
     --repos https://manuelhentschel.r-universe.dev --repos getOption \
@@ -16,17 +22,11 @@ RUN install2.r --error --skipinstalled -n -1 \
     && rm -rf /tmp/downloaded_packages \
     && strip /usr/local/lib/R/site-library/*/libs/*.so
 
-RUN python3 -m pip install --no-cache-dir \
+RUN /rocker_scripts/install_julia.sh && \
+    /rocker_scripts/install_python.sh && \
+    python3 -m pip install --no-cache-dir \
     radian \
     dvc
-
-USER rstudio
-WORKDIR /home/rstudio
-
-RUN mkdir -p .cache/R/renv .cache/pip .julia .local/bin .cache/pydrive2fs && \
-    Rscript -e 'tinytex::install_tinytex()'
-
-USER root
 
 RUN python3 -m pip install --no-cache-dir dvc-gdrive
 
