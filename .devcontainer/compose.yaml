@@ -13,6 +13,7 @@ services:
       - julia:/home/rstudio/.julia
       - TinyTeX:/home/rstudio/.TinyTeX
       - fonts:/usr/share/fonts
+      - pydrive2fs:/home/rstudio/.cache/pydrive2fs
 volumes:
   renv:
     external: true
@@ -23,4 +24,6 @@ volumes:
   TinyTeX:
     external: true
   fonts:
+    external: true
+  pydrive2fs:
     external: true

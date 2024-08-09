@@ -2,7 +2,7 @@
 
 # Install R packages
 if [ -s renv.lock ]; then
-  Rscript -e 'renv::restore()'
+  Rscript -e 'options(renv.config.external.libraries = "/usr/local/lib/R/site-library"); renv::restore()'
 fi
 
 # Install Python packages
