@@ -14,8 +14,3 @@ fi
 if [ -s Project.toml ]; then
   julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate()'
 fi
-
-# Download data from the remote storage
-if [ -d .dvc ]; then
-  dvc pull
-fi
