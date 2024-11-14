@@ -17,7 +17,7 @@
       ],
       "settings": {
         "r.rpath.linux": "/usr/local/bin/R",
-        "r.rterm.linux": "/usr/local/bin/radian",
+        "r.rterm.linux": "/home/rstudio/.local/bin/radian",
         "r.plot.useHttpgd": true,
         "r.bracketedPaste": true,
         "latex-workshop.latex.recipes": [
