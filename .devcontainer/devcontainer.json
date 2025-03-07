@@ -3,7 +3,14 @@
   "dockerComposeFile": "compose.yaml",
   "service": "rstudio",
   "workspaceFolder": "/home/rstudio/${localWorkspaceFolderBasename}",
-  "forwardPorts": [8080, 8787],
+  "forwardPorts": [
+    8787
+  ],
+  "portsAttributes": {
+    "8787": {
+      "label": "RStudio"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [

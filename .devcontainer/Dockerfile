@@ -24,3 +24,5 @@ RUN mkdir -p .cache/R/renv .cache/pip .julia .local/bin .cache/pydrive2fs && \
 RUN python3 -m pip config set global.break-system-packages true && \
     pipx install --include-deps radian && \
     pipx install --include-deps dvc[gdrive]
+
+USER root
