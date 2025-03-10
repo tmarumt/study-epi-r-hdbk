@@ -4,11 +4,15 @@
   "service": "rstudio",
   "workspaceFolder": "/home/rstudio/${localWorkspaceFolderBasename}",
   "forwardPorts": [
-    8787
+    8787,
+    3838
   ],
   "portsAttributes": {
     "8787": {
       "label": "RStudio"
+    },
+    "3838": {
+      "label": "Shiny"
     }
   },
   "customizations": {
@@ -20,7 +24,8 @@
         "julialang.language-julia",
         "quarto.quarto",
         "james-yu.latex-workshop",
-        "editorconfig.editorconfig"
+        "editorconfig.editorconfig",
+        "posit.shiny"
       ],
       "settings": {
         "r.rpath.linux": "/usr/local/bin/R",
